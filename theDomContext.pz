@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='utf-8' /><script>console.clear();</script><title>DOM</title>
+	</head>
+	<body style="background:#000;color:#757575">
+		<div>
+			<p>1</p>
+			<p>2</p>
+			<ul id='lista'>
+				  <li>Coffee</li>
+				  <li>Tea</li>
+				  <li>Milk</li>
+			</ul>
+		</div>
+		<div>
+			<iframe src='' title='src=http://www.w3schools.com'></iframe>
+		</div>
+<!--
+function scope(){
+
+ var L, stopAT;
+
+
+ function parseDOM(e){
+	L=0;
+	stopAT=e;
+	walkThisBranch(e)
+ };
+ 
+};
+//
+/*
+var _Call=Function.prototype.call;
+function defineFunctionCallShortcut(o,p,x){o[p]=_Call.bind(x);return o};
+
+*/
+-->
+<script>
+//✔
+//ℹ 2Lock
+var _Create=Object.create;
+var _Slice=Array.prototype.slice;
+var _Call=Function.prototype.call;
+
+//✔is?
+function isNumber(e){return typeof(e)==='number'};
+function isUndefined(e){return typeof(e)==='undefined'};
+function isVal(e){return e!==null && !isUndefined(e)};
+function valOR(a,b){return isVal(a)?a:b};
+
+
+//✔
+function SimpleObject(p,o){return _Create(null,p||{})};
+
+
+//✔
+//ℹ Tool 
+function defineFunctionCallShortcut(o,p,x){o[p]=_Call.bind(x);return o};
+
+//✔
+/*ℹ Slice Zero-based
+							index:
+										i[=BeginOfExtraction]
+										 As a negative index, indicates an offset from the end of the sequence. 
+										 (0 by defaults)
+
+										j[=EndOfExtraction]
+										 slice extracts up-to-but-not-including-end.
+										 As a negative index, indicates an offset from the end of the sequence. 
+										 (If is omitted, slice extracts to the end of the sequence.)
+
+										 e.g.: If m=[0,1,2,3,4,5,6]
+																		⤷ slice(-1) extracts [6]
+																		⤷ slice(-2) extracts [5,6]
+
+																		⤷ slice(1,-2) extracts[1, 2, 3, 4]
+
+																		⤷ slice(3) extracts [3,4,5,6]
+
+																		⤷ slice(2,6) extracts [2,3,4,5] 
+																		⤷ slice(3,6) extracts [3,4,5]
+																		⤷ slice(3,5) extracts [3,4]
+																		⤷ slice(3,4) extracts [3]
+																		
+																		⤷ slice(0,-1) extracts [0,1,2, 3, 4, 5]] 
+																		⤷ slice(2,-1) extracts [2, 3, 4, 5]] 
+																		⤷ slice(4,-1) extracts [ 4, 5]] 
+*/
+var Slice=defineFunctionCallShortcut(function(x,i,j){return Slice.f(x,isNumber(i)?i:0,j)},'f',_Slice);
+
+
+
+//✔
+function propertyDescriptor(v,w,e,c){var x=false;return{value:v,writable:w||x,enumerable:e||x,configurable:c||x}};
+function describeProperty(v,w,c,e){return propertyDescriptor(v,w,valOR(e,1),c)};
+function Properties(){var e,o={},m=Slice(arguments);while(e=m.pop()){var p=e[0],d=e[1];o[p]=describeProperty(d[0],d[1],d[2],d[3])};return o};
+
+
+//✔
+function isDocument(e){return e.nodeType===9};
+
+//
+function getDomContext(e){var d,h,n,j='documentElement',i='ownerDocument',l='defaultView';if(isDocument(e)){d=e;n=h=d[j]}else{d=e[i];n=e;h=d[j]};return SimpleObject(Properties([l,[d[l]]],[i,[d]],[j,[h]]))};
+
+//{l:f(d[l]),i:f(d),j:}
+//console.dir(e) 
+  
+  
+var theDomContext=getDomContext(document.body);
+  
+console.info('MyDomContext:\n%O',theDomContext);
+ 
+ 
+//function Collect(){};
+//console.log(this.argument)
+/*
+function Collect() {
+    var o={};
+    for(var i=0;i<arguments.length;i++) {
+      var arg=arguments[i];
+      if(typeof arg != "object") continue;
+      for(var p in arg) {
+        if(arg.hasOwnProperty(p)) o[p] = arg[p];
+      }
+    }
+    return o;
+}
+*/
+
+
+
+
+
+
+/*function(zzz){return Create}
+
+SimpleObject.bind(Object);
+
+console.dir(SimpleObject());
+
+//
+function isNode(e){return e instanceof Node};
+//
+
+
+
+f=propertyDescriptor()
+d.;
+
+*/
+
+
+
+
+
+
+
+</script>
+	</body>
+</html>
